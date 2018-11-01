@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  tensorflow:
+    image: tensorflow/tensorflow:latest-gpu
+    ports:
+    - 8888:8888
+    - 6006:6006
+    volumes:
+    - ./data/:/data
+    - ./notebooks/:/notebooks
+    - ./scripts/:/scripts
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    user: ${UID}:${GID}
+    environment:
+    - PASSWORD=123456
+    - DISPLAY=$DISPLAY
+
+
+# before starting: xhost +local:docker
+  opencv:
+    image: adnrv/opencv
+    devices:
+    - /dev/video0:/dev/video0
+    tty: true
+    environment:
+    - DISPLAY=$DISPLAY
+    volumes:
+    - ./data/:/data
+    - ./scripts/:/scripts
+    - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    working_dir: /scripts
