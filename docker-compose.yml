@@ -19,8 +19,8 @@ services:
 # before starting: xhost +local:docker
   opencv:
     image: adnrv/opencv
-    devices:
-    - /dev/video0:/dev/video0
+#    devices:
+#    - /dev/video0:/dev/video0
     tty: true
     environment:
     - DISPLAY=$DISPLAY
