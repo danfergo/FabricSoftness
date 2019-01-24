@@ -60,8 +60,8 @@ def write_images(dataset, output_path):
 
 
 if __name__ == '__main__':
-    from_path = '/data/no_dots_gel/resized'
-    to_path = '/data/no_dots_gel/split/'
+    from_path = 'images/resized'
+    to_path = 'images/split/'
 
     print('Generating splits...')
     raw_dataset = detect_categories(from_path)

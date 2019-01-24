@@ -3,16 +3,17 @@ import pathlib
 import numpy as np
 
 def captureCategoryImages(n_elems, category, to_folder=False, i=0):
+    pathlib.Path(to_folder).mkdir(parents=True)
 
-    # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture('2018-11-14-141611.webm')
+    cap = cv2.VideoCapture(1)
+    #cap = cv2.VideoCapture('2018-11-14-141611.webm')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     while (i < n_elems):
 
         ret, frame = cap.read()
-        key = cv2.waitKey(1000) & 0xFF
+        key = cv2.waitKey(10) & 0xFF
         gray = frame  # cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         if key == ord('q'):
             break
@@ -43,18 +44,18 @@ def captureImages(n_elems, categories, path):
     pathlib.Path(path).mkdir(parents=True)
 
     print('Capturing average (press c to capture) ...')
-    captureCategoryImages(3, 'background', path + '/' + 'background')
+    captureCategoryImages(3, 'background', path + '/' + 'background'+ '/')
     waitNext()
 
 
     for category in categories:
         print('Capturing ' + category + '(press c to capture) ...')
-        captureCategoryImages(n_elems, category, path + '/' + category)
+        captureCategoryImages(n_elems, category, path + '/' + category+ '/')
         waitNext()
 
     print('Capturing average...')
-    captureCategoryImages(3, 'background', path + '/' + 'background', 3)
+    captureCategoryImages(3, 'background', path + '/' + 'background'+ '/', 3)
 
 
 if __name__ == '__main__':
-    captureImages(1500, ['stiff', 'soft'], 'images/test/')
+    captureImages(5, ['stiff', 'soft'], 'images/raw/')

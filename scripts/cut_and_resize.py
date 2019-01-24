@@ -22,7 +22,7 @@ def cut1(img, background, wh, xy):
 
 
 def cut5(from_path, to_path, category, background, cuts, wh):
-    input_dir = from_path + '/' + category
+    input_dir = from_path + '/' + category +'/'
     good_dir = to_path + '/' + category + '/'
     excluded_dir = to_path + '/' + category + '_excluded/'
 
@@ -65,11 +65,11 @@ def compute_max_min_diffs(from_path, background, category, cuts, wh):
 
 
 if __name__ == '__main__':
-    from_path = '/data/no_dots_gel/raw/'
-    to_path = '/data/no_dots_gel/resized/'
+    from_path = 'images/raw/'
+    to_path = 'images/resized/'
     categories = ['soft', 'stiff']
 
-    background = cv2.imread('/data/no_dots_gel/raw/background/background2.png')
+    background = cv2.imread('images/raw/background/2.png')
 
     cuts = [(80, 0), (320, 0), (80, 240), (320, 240), (120, 200)]
     wh = (240, 240)
