@@ -43,7 +43,7 @@ def waitNext():
 def captureImages(n_elems, categories, path):
     pathlib.Path(path).mkdir(parents=True)
 
-    print('Capturing average (press c to capture) ...')
+    print('Capturing background (press c to capture) ...')
     captureCategoryImages(3, 'background', path + '/' + 'background'+ '/')
     waitNext()
 
