@@ -19,9 +19,17 @@ def percentages_to_abs(splits, n_elements):
 
 
 def do_splits(dataset, splits):
-    min_category = min(dataset, key=operator.itemgetter(1))
+    """
+    :param dataset: [ [category_name, [img1path, im2path, img3path ... ] ], ...]
+    :param splits:
+    :return:
+    """
+    min_category = min(dataset, key=lambda x: len(x[1]))
+
     other_categories = [cat for cat in dataset if cat[0] != min_category[0]]
     n_elems_per_cat = len(min_category[1])
+
+    # print([(x[0], x[1], n_elems_per_cat) for x in other_categories], n_elems_per_cat)
 
     balanced_dataset = [min_category] + [(x[0], random.sample(x[1], n_elems_per_cat)) for x in other_categories]
 
@@ -60,8 +68,8 @@ def write_images(dataset, output_path):
 
 
 if __name__ == '__main__':
-    from_path = 'images/resized'
-    to_path = 'images/split/'
+    from_path = '../data/circles/resized'
+    to_path = '../data/circles/split/'
 
     print('Generating splits...')
     raw_dataset = detect_categories(from_path)
